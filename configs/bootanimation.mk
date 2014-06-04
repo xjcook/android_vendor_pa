@@ -13,9 +13,17 @@
 # limitations under the License.
 
 # Add PA bootanimation based on device resolution
-ifneq ($(filter pa_mako pa_maguro pa_toro pa_toroplus pa_grouper pa_tilapia,$(TARGET_PRODUCT)),)
+ifneq ($(filter pa_maguro pa_toro pa_toroplus,$(TARGET_PRODUCT)),)
     PRODUCT_COPY_FILES += \
         vendor/pa/prebuilt/bootanimation/1280x720.zip:system/media/bootanimation.zip
+endif
+ifeq (pa_mako,$(TARGET_PRODUCT))
+    PRODUCT_COPY_FILES += \
+        vendor/pa/prebuilt/bootanimation/1280x768.zip:system/media/bootanimation.zip
+endif
+ifneq ($(filter pa_grouper pa_tilapia,$(TARGET_PRODUCT)),)
+    PRODUCT_COPY_FILES += \
+        vendor/pa/prebuilt/bootanimation/1280x800.zip:system/media/bootanimation.zip
 endif
 ifeq (pa_hammerhead,$(TARGET_PRODUCT))
     PRODUCT_COPY_FILES += \
